@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Event Check-In Scanner</h1>
+        <a href="/">Back to Registration</a>
+        
+        <div id="scanner-container">
+            <div id="camera-view">
+                <video id="preview"></video>
+                <div id="viewfinder"></div>
+            </div>
+            <div id="scan-result"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="{{ url_for('static', filename='scanner.js') }}"></script>
+</body>
+</html>

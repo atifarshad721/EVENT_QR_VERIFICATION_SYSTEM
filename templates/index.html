@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Participant Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Add scanner link -->
+    <div class="navigation">
+        <a href="/scanner">Open Scanner</a>
+        <a href="/participants">View Participants</a>
+    </div>
+
+    <div class="container">
+        <h1>Participant Registration</h1>
+        
+        <form id="registrationForm">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <button type="button" onclick="registerParticipant()">Register</button>
+        </form>
+
+        <!-- Update verification result display -->
+        <div id="verificationResult">
+            {% if verification_result %}
+                {% if verification_method == "QR Code Scan" %}
+                    <p>QR Verified: {{ verification_result.name }} (ID: {{ verification_result.unique_id }})</p>
+                {% else %}
+                    <p>Participant Found: {{ verification_result.name }} (ID: {{ verification_result.unique_id }})</p>
+                {% endif %}
+            {% elif error %}
+                <p class="error">Error: {{ error }}</p>
+            {% endif %}
+        </div>
+
+        <div id="verificationResult">
+            {% if verification_result %}
+                {% if verification_result %}
+                    <p>Participant Found: {{ verification_result.name }} (ID: {{ verification_result.id }})</p>
+                    <img src="{{ url_for('download_file', filename=verification_result.id ~ '.png') }}" alt="QR Code">
+                {% else %}
+                    <p>Participant not found</p>
+                {% endif %}
+            {% endif %}
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

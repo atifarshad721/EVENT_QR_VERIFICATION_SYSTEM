@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Participants List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Registered Participants</h1>
+        <a href="/">Back to Home</a>
+        
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>QR Code</th>
+            </tr>
+            {% for participant in participants %}
+            <tr>
+                <td>{{ participant.id }}</td>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.phone }}</td>
+                <td><img src="{{ url_for('download_file', filename=participant.unique_id ~ '.png') }}" alt="QR Code" class="qrcode"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
